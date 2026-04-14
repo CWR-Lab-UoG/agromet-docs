@@ -1,0 +1,22 @@
+/* Fallback: if mmdc fails and a raw mermaid code block reaches the browser,
+ * hide the raw source and show a placeholder message instead.
+ */
+pre:has(> code.language-mermaid),
+pre:has(> code.mermaid) {
+  position: relative;
+  overflow: hidden;
+}
+
+pre > code.language-mermaid,
+pre > code.mermaid {
+  visibility: hidden;
+}
+
+pre:has(> code.language-mermaid)::before,
+pre:has(> code.mermaid)::before {
+  content: "Diagram not rendered — see build log for details.";
+  display: block;
+  padding: 0.75rem 1rem;
+  opacity: 0.75;
+  font-style: italic;
+}

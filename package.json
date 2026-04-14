@@ -1,0 +1,10 @@
+{
+  "name": "agromet-docs-build-tools",
+  "private": true,
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "11.12.0"
+  },
+  "scripts": {
+    "mermaid:version": "mmdc --version || npx -y @mermaid-js/mermaid-cli@11.12.0 --version"
+  }
+}

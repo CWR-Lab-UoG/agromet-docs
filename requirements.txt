@@ -1,0 +1,13 @@
+# MkDocs Core
+mkdocs>=1.5.0
+mkdocs-material>=9.4.0
+
+# Plugins
+mkdocs-glightbox>=0.3.0
+mkdocs-to-pdf>=0.9.0
+
+# Extensions for advanced features
+pymdown-extensions>=10.0
+
+# Math pre-rendering (LaTeX → MathML for PDF output)
+latex2mathml>=2.0.0

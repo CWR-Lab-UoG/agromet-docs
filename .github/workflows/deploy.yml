@@ -1,0 +1,87 @@
+name: Deploy documentation
+
+# Trigger on every push to main, or manually from the Actions tab.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Allow the job to push the built site to the gh-pages branch.
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - uses: actions/checkout@v4
+        with:
+          # Full history is required by mkdocs gh-deploy (it uses git metadata
+          # for the "last updated" timestamp on pages).
+          fetch-depth: 0
+
+      # ── 2. Python ──────────────────────────────────────────────────────────
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: pip-
+
+      - name: Install WeasyPrint system dependencies
+        # libpangocairo-1.0-0 provides the Pango + Cairo text/layout engine
+        # that WeasyPrint uses to render the PDF.  It is not pre-installed on
+        # the ubuntu-latest runner.
+        run: sudo apt-get install -y libpangocairo-1.0-0
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      # ── 3. Node / Mermaid CLI ──────────────────────────────────────────────
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          # package-lock.json pins the exact mmdc + bundled Chromium version.
+          # A change to the lockfile (e.g. mmdc upgrade) invalidates the cache
+          # and triggers a fresh npm ci + Chromium download (~150 MB).
+          key: node-${{ hashFiles('package-lock.json') }}
+          restore-keys: node-
+
+      - name: Install Node dependencies (Mermaid CLI + Chromium)
+        # npm ci installs exactly what package-lock.json specifies.
+        # Chromium is bundled by Puppeteer inside @mermaid-js/mermaid-cli —
+        # no separate system Chromium installation is needed.
+        run: npm ci
+
+      # ── 4. Build and deploy ────────────────────────────────────────────────
+      - name: Build site and deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
+        # mkdocs gh-deploy:
+        #   • Runs `mkdocs build` (writes to site/)
+        #   • Pushes site/ contents to the gh-pages branch
+        #   • --force overwrites the branch history (keeps it clean)
+        #
+        # Mermaid diagrams: hooks/mermaid_prerender.py checks the PNG cache in
+        # docs/assets/mermaid/ before calling mmdc.  Committing that cache
+        # directory means only diagrams that have actually changed are
+        # re-rendered, keeping this step fast on routine doc edits.
+        #
+        # Math equations: hooks/math_prerender.py runs latex2mathml at build
+        # time (pure Python, no extra system deps needed).
+        #
+        # Puppeteer sandbox: puppeteer.config.json at the project root supplies
+        # --no-sandbox flags.  mermaid_prerender.py detects the file and passes
+        # it to mmdc via --puppeteerConfigFile automatically.  The file must be
+        # valid JSON — mmdc calls JSON.parse() on it directly.

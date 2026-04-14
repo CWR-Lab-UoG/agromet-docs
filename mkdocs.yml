@@ -1,0 +1,132 @@
+site_name: CWR Lab Agrometeorology Documentation
+site_description: GHG Flux Measurement Systems & Processing Documentation for CWR Lab
+site_author: CWR Lab Team
+site_url: https://cwr-lab-uog.github.io/agromet-docs/
+
+# Repository
+repo_name: cwr-lab-uog/agromet-docs
+repo_url: https://github.com/cwr-lab-uog/agromet-docs
+edit_uri: edit/main/docs/
+
+# Theme Configuration
+theme:
+  font: false
+  name: material
+  palette:
+    # Light mode
+    - scheme: default
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - toc.integrate
+  
+  icon:
+    repo: fontawesome/brands/github
+
+# Plugins
+plugins:
+  - search
+  - glightbox:
+      skip_classes:
+        - mermaid-svg  # we have our own zoom overlay; skip to avoid doubling data URIs in href
+  - to-pdf:
+      cover_subtitle: "GHG Flux Measurement Systems & Processing"   # ← fixes the h2 "None"
+      author: "CWR Lab Team"                                        # ← fixes the author "None"
+      copyright: "© CWR Lab, University of Guelph"                  # ← optional but clean
+      
+# Extensions
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# Additional JavaScript for MathJax (equations) and diagram zoom
+# ORDER MATTERS: mathjax.js sets window.MathJax config and MUST load before the library.
+extra_javascript:
+  - javascripts/mathjax.js
+  - javascripts/vendor/mathjax/es5/tex-mml-chtml.js
+  - javascripts/mermaid-zoom.js
+extra_css:
+  - stylesheets/mermaid-svg.css
+  - stylesheets/extra.css
+  - stylesheets/mermaid-loading.css
+  
+# Exclude vendor docs and README files from build (they would appear as junk pages in PDF)
+exclude_docs: |
+  mermaid-prerender.md
+  images/README.md
+  videos/README.md
+  javascripts/vendor/README.md
+  javascripts/vendor/mathjax/es5/README.md
+  javascripts/vendor/mathjax/es5/CONTRIBUTING.md
+
+# Page tree
+nav:
+  - Home: index.md
+  - Introduction:
+      - Overview: introduction/overview.md
+      - Site Description: introduction/site-description.md
+      - Instrumentation: introduction/instrumentation.md
+  - Processing:
+      - Overview: processing/overview.md
+      - Daily Automation: processing/automation_task_scheduler.md
+      - Eddy Covariance Pipeline: processing/eddy_covariance_pipeline.md
+      - Flux-Gradient Pipeline: processing/flux_gradient_pipeline.md
+  - Eddy-Covariance Analysis:
+      - EC Fundamentals: eddy-covariance/fundamentals.md
+  - Flux-Gradient Analysis:
+      - FG Fundamentals: flux-gradient/fundamentals.md
+      - TGA System: flux-gradient/tga-system.md
+      - Processing Pipeline: flux-gradient/processing-pipeline.md
+      - Site Initialization: flux-gradient/site-initialization.md
+      - Troubleshooting: flux-gradient/troubleshooting.md
+  - Glossary: glossary.md
+  - References: references.md
+
+# Extra
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/username
+
+hooks:
+  - hooks/mermaid_prerender.py
+  - hooks/math_prerender.py
