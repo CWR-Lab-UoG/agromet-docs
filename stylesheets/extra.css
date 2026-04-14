@@ -1,0 +1,205 @@
+/* ── Math rendering: browser vs PDF ─────────────────────────────────────────
+ *
+ * Browser: MathJax processes .arithmatex elements (JS, already works).
+ *          .math-mathml elements are hidden.
+ *
+ * PDF (WeasyPrint): no JavaScript → MathJax never fires.
+ *          .arithmatex (raw LaTeX text) is hidden.
+ *          .math-mathml (pre-rendered MathML) is shown instead.
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/* ── Latin Modern Math font (PDF only) ───────────────────────────────────────
+ *
+ * Latin Modern Math is the OpenType successor to Computer Modern Math — the
+ * same font TeX/LaTeX uses for equations.  Bundling it here (docs/fonts/)
+ * gives WeasyPrint a local path to the file, so PDF math matches the classic
+ * LaTeX look: serif glyphs, proper math-italic identifiers, correct spacing.
+ *
+ * The font is only declared as @font-face and applied inside @media print, so
+ * it has zero effect on the browser rendering (MathJax handles that).
+ *
+ * Source: Latin Modern Math by B. Jackowski, P. Strzelczyk, P. Pianowski
+ *         (GUST e-foundry) — licensed under the GUST Font License (GFL),
+ *         which permits free use, embedding in PDFs, and redistribution.
+ *         https://www.gust.org.pl/projects/e-foundry/lm-math
+ * ──────────────────────────────────────────────────────────────────────── */
+@font-face {
+    font-family: 'Latin Modern Math';
+    src: url('../fonts/latinmodern-math.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Browser: hide MathML companion elements */
+.math-mathml { display: none; }
+
+@media print {
+    /* PDF: hide raw arithmatex source, show pre-rendered MathML */
+    .arithmatex                { display: none !important; }
+    .math-mathml               { display: inline !important; }
+    .math-mathml-block         { display: block  !important;
+                                  text-align: center;
+                                  margin: 0.8em 0; }
+    /* Ensure MathML inside the companion span renders correctly */
+    .math-mathml math          { font-size: 1.05em; }
+    .math-mathml-block math    { font-size: 1.1em; }
+
+    /* ── MathML layout for WeasyPrint ────────────────────────────────────
+     *
+     * Root cause: WeasyPrint (tested through v68) parses MathML elements
+     * but does NOT implement the MathML layout algorithm.  In practice
+     * this means <mfrac> is rendered as flat inline text — numerator and
+     * denominator are concatenated without a fraction bar or vertical
+     * stacking — which is the bug visible in the PDF.
+     *
+     * Fix: supply explicit CSS display values for every MathML element
+     * produced by latex2mathml so WeasyPrint lays them out correctly
+     * using its own (fully-supported) CSS engine.
+     *
+     * Key mappings
+     *   <math>   → inline-block  (establishes an independent formatting context)
+     *   <mrow>   → inline        (transparent grouping)
+     *   <mfrac>  → inline-table  (numerator and denominator become table-rows;
+     *                             border-bottom on the first row is the fraction
+     *                             bar)
+     *   <msub>/<msup> → inline   (base + script rendered inline; the script
+     *                             child is shrunk and vertically offset via
+     *                             vertical-align)
+     *   leaf elements            → inline (default; listed explicitly so
+     *                             WeasyPrint doesn't fall back to block)
+     * ------------------------------------------------------------------ */
+
+    /* Root math element
+     * font-family: Latin Modern Math first (bundled OTF, LaTeX-identical look),
+     * then standard math-font fallbacks in case the file is unavailable. */
+    math {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1.4;
+        font-family: 'Latin Modern Math', 'STIX Two Math', 'Cambria Math', serif;
+    }
+
+    /* Grouping / style wrappers */
+    mrow, mstyle { display: inline; }
+
+    /* Leaf / token elements */
+    mi, mn, mo, mtext, ms { display: inline; }
+
+    /* math_prerender.py maps single-letter <mi> content to Unicode Math
+     * Italic code points (e.g. K → 𝐾 U+1D43E, z → 𝑧 U+1D467, κ → 𝜅 U+1D705).
+     * Latin Modern Math ships the designed italic glyphs at those code points,
+     * so no CSS font-style trick is needed here.  Multi-letter <mi> elements
+     * (function names like ln, sin) are left as-is and render upright, which
+     * is correct per the MathML specification. */
+
+    /* Spacing */
+    mspace { display: inline; }
+
+    /* ── Fractions ──────────────────────────────────────────────────── */
+    mfrac {
+        display: inline-table;
+        vertical-align: middle;
+        text-align: center;
+        border-collapse: collapse;
+        margin: 0 0.1em;
+    }
+    /* Numerator row — border-bottom IS the fraction bar */
+    mfrac > *:first-child {
+        display: table-row;
+        padding: 0 3px 1px 3px;
+        border-bottom: 1px solid currentColor;
+    }
+    /* Denominator row */
+    mfrac > *:last-child {
+        display: table-row;
+        padding: 1px 3px 0 3px;
+    }
+    /* Nested fractions (e.g. \dfrac inside a denominator) shrink slightly
+     * so they don't overpower the outer fraction visually. */
+    mfrac mfrac { font-size: 0.85em; }
+
+    /* ── Subscripts and superscripts ────────────────────────────────── */
+    /* Keep base + script on the same inline line; the script child is
+     * shifted via vertical-align without changing the element's display. */
+    msub, msup, msubsup { display: inline; }
+
+    msub  > *:nth-child(2) { font-size: 0.72em; vertical-align: sub;   line-height: 0; }
+    msup  > *:nth-child(2) { font-size: 0.72em; vertical-align: super; line-height: 0; }
+
+    /* For msubsup the second child is the subscript, third is superscript */
+    msubsup > *:nth-child(2) { font-size: 0.72em; vertical-align: sub;   line-height: 0; }
+    msubsup > *:nth-child(3) { font-size: 0.72em; vertical-align: super; line-height: 0; }
+
+    /* ── Over / under scripts ───────────────────────────────────────── */
+    mover, munder, munderover { display: inline; }
+
+    mover  > *:nth-child(2) { font-size: 0.72em; vertical-align: super; line-height: 0; }
+    munder > *:nth-child(2) { font-size: 0.72em; vertical-align: sub;   line-height: 0; }
+
+    /* ── Square root ────────────────────────────────────────────────── */
+    /* Simple approximation: wrap in a border-top box (no radical symbol) */
+    msqrt {
+        display: inline-block;
+        border-top: 1px solid currentColor;
+        padding: 0 2px;
+        margin-left: 0.3em;        /* leaves space for an implied radical sign */
+    }
+
+    /* ── Phantom (invisible space holder) ──────────────────────────── */
+    mphantom { visibility: hidden; }
+}
+
+/* mermaid zoom overlay */
+
+html.mzo-noscroll, html.mzo-noscroll body { overflow: hidden; }
+
+#mermaid-zoom-overlay { position: fixed; inset: 0; z-index: 9999; display: none; }
+#mermaid-zoom-overlay.is-open { display: block; }
+
+#mermaid-zoom-overlay .mzo-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+#mermaid-zoom-overlay .mzo-stage {
+  position: absolute; inset: 4vh 3vw;
+  background: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  overflow: hidden;
+  cursor: grab;
+}
+#mermaid-zoom-overlay .mzo-stage.mzo-dragging { cursor: grabbing; }
+
+#mermaid-zoom-overlay .mzo-close {
+  position: absolute; top: 10px; right: 14px;
+  z-index: 3;
+  font-size: 28px;
+  line-height: 28px;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  border: 0;
+  background: rgba(0,0,0,0.08);
+  color: #111;
+}
+#mermaid-zoom-overlay .mzo-close:hover { background: rgba(255,255,255,0.18); }
+
+#mermaid-zoom-overlay .mzo-img {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  max-width: 95vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#mermaid-zoom-overlay .mzo-hint {
+  color: #222 !important;
+
+  position: absolute; left: 12px; bottom: 10px;
+  z-index: 3;
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.8);
+  padding: 6px 10px;
+  border-radius: 10px;
+}
