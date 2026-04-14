@@ -1,0 +1,59 @@
+# ── Generated site ────────────────────────────────────────────────────────────
+# Built by `mkdocs build` and `mkdocs gh-deploy`.  Never commit — the gh-pages
+# branch holds the published site; the source tree holds only source.
+site/
+
+# ── Node ──────────────────────────────────────────────────────────────────────
+# Installed by `npm ci` / `npm install`.  Includes the bundled Chromium used by
+# Mermaid CLI — ~150 MB, no need to track in git.
+node_modules/
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ── OS / editor noise ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Local MkDocs temp files ───────────────────────────────────────────────────
+# mkdocs creates a temporary render config here during Mermaid pre-rendering.
+docs/assets/mermaid/mermaid-render-config.json
+
+# ────────────────────────────────────────────────────────────────────────────
+# Things that look like they should be ignored but SHOULD be committed:
+#
+#   docs/assets/mermaid/*.png
+#       Mermaid PNG cache.  Committing these means the CI job only re-renders
+#       diagrams that have actually changed — mmdc/Chromium is not invoked at
+#       all for cache hits.  Without the cache every build re-renders every
+#       diagram, adding ~30-60 s per diagram on a cold runner.
+#
+#   docs/javascripts/vendor/mathjax/
+#       Self-hosted MathJax library — a runtime asset served to browsers,
+#       not a build tool.  Must be in the repo so the site works offline and
+#       without any external CDN dependency.
+#
+#   docs/fonts/latinmodern-math.otf
+#       Bundled math font used by WeasyPrint for PDF rendering.  A static
+#       asset, not a build artifact.
+#
+#   package-lock.json
+#       Pins the exact mmdc + Puppeteer + Chromium versions used by the hook.
+#       Committing it ensures local dev and CI produce identical diagrams.
+#
+#   puppeteer.config.json
+#       Puppeteer launch options for mmdc (--no-sandbox flags for CI).
+#       Must be valid JSON — mmdc calls JSON.parse() on it directly.
+# ────────────────────────────────────────────────────────────────────────────
