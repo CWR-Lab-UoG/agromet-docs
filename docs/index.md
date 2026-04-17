@@ -70,18 +70,34 @@ Below is an introductory video explaining the site setup (example of video embed
 
 <!-- Replace with actual video URL -->
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <div class="video-embed">
-<iframe 
-    src="https://www.youtube.com/embed/video-id" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
+  <video id="tutorialVideo"
+         controls
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  </video>
 </div>
-<div class="video-placeholder">📹 Video tutorial — available in the online documentation at the project site.</div>
 
-</div>
+<script>
+  const videoList = [
+    "videos/tutorials/CWR_FG_Walkthrough_Part_01r720_part_001.mp4",
+	"videos/tutorials/CWR_FG_Walkthrough_Part_01r720_part_002.mp4"
+  ];
+
+  let current = 0;
+  const player = document.getElementById("tutorialVideo");
+
+  function playNext() {
+    if (current < videoList.length) {
+      player.src = videoList[current];
+      player.play();
+      current++;
+    }
+  }
+
+  player.addEventListener("ended", playNext);
+
+  // Start the first video
+  playNext();
+</script>
 
 ## Site Diagram
 
