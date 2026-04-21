@@ -29,7 +29,7 @@ sequenceDiagram
     
 ```
 
-!!! "Tasks At-a-Glance"
+!!! note "Tasks At-a-Glance"
     ```mermaid
     flowchart TB
         TS[Windows Task Scheduler]
@@ -57,3 +57,12 @@ sequenceDiagram
 - Data ingestion is separated from scientific processing
 - Failures in one site do not block others
 - Logs are written for traceability and recovery
+
+
+!!! note "Data Transfer Details"
+
+    For detailed information on how data are transferred from field sites
+    (Google Drive API, Dropbox, DriveHQ, and hybrid systems), including
+    workflows and pseudocode, see:
+
+    ➤ **[Data Transfer Workflows](data_transfer_workflows.md)**
