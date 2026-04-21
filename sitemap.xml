@@ -2,66 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/glossary/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/references/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/eddy-covariance/fundamentals/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/flux-gradient/fundamentals/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/flux-gradient/processing-pipeline/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/flux-gradient/site-initialization/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/flux-gradient/tga-system/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/flux-gradient/troubleshooting/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/introduction/instrumentation/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/introduction/overview/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/introduction/site-description/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/processing/automation_task_scheduler/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
+    </url>
+    <url>
+         <loc>https://cwr-lab-uog.github.io/agromet-docs/processing/data_transfer_workflows/</loc>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/processing/eddy_covariance_pipeline/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/processing/flux_gradient_pipeline/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
     <url>
          <loc>https://cwr-lab-uog.github.io/agromet-docs/processing/overview/</loc>
-         <lastmod>2026-04-17</lastmod>
+         <lastmod>2026-04-21</lastmod>
     </url>
 </urlset>
