@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://cwr-lab-uog.github.io/agromet-docs/processing/data_transfer_workflows/">
       
       
-        <link rel="prev" href="../automation_task_scheduler/">
+        <link rel="prev" href="../data_collection_workflows/">
       
       
         <link rel="next" href="../eddy_covariance_pipeline/">
@@ -686,6 +686,34 @@
     
   
     Daily Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_collection_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Collection Workflows
   
 
     
@@ -1721,6 +1749,8 @@
 <li>a comparison table across sites</li>
 <li>site-specific implementations</li>
 </ul>
+<p>For the exact scheduled times at which each transfer step fires on the lab processing
+computer, see <strong><a href="../automation_task_scheduler/">Daily Automation &amp; Task Scheduler</a></strong>.</p>
 <hr>
 <h2 id="1-data-transfer-architecture">1. Data Transfer Architecture</h2>
 <p>Different sites use different transfer mechanisms depending on:</p>
@@ -1943,6 +1973,15 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">\"Manual / Heights\" column</p>
+<p>This column refers to periodic manual-measurement files: canopy height records,
+leaf area index (LAI) measurements, crop management logs, and other non-automated
+field observations that are uploaded on an irregular schedule (typically after each
+field visit) alongside the continuous automated data. At most sites these files are
+uploaded via the Google Drive API regardless of which mechanism handles the
+high-frequency tower data.</p>
+</div>
 <hr>
 <h2 id="5-site-specific-implementations">5. Site-Specific Implementations</h2>
 <hr>
@@ -1977,6 +2016,12 @@
 </ul>
 <hr>
 <h3 id="52-on3-google-drive-api-transfer">5.2 ON3 – Google Drive API Transfer</h3>
+<div class="admonition info">
+<p class="admonition-title">Stub — content to be added</p>
+<p>This section follows the same architecture as ON1 but with site-specific
+paths and configuration. Details to be completed once ON1 documentation
+is finalised and used as a template.</p>
+</div>
 <h4 id="overview_5">Overview</h4>
 <ul>
 <li>Same architecture as ON1</li>
@@ -1990,6 +2035,11 @@
 </ul>
 <hr>
 <h3 id="53-sk1-dropbox-google-api-hybrid">5.3 SK1 – Dropbox + Google API (Hybrid)</h3>
+<div class="admonition info">
+<p class="admonition-title">Stub — content to be added</p>
+<p>Site-specific paths, Dropbox folder configuration, and script names to be
+documented here.</p>
+</div>
 <h4 id="overview_6">Overview</h4>
 <ul>
 <li>Tower + TGA: Dropbox</li>
@@ -2008,6 +2058,10 @@
 </ul>
 <hr>
 <h3 id="54-ab1-hybrid-transfer">5.4 AB1 – Hybrid Transfer</h3>
+<div class="admonition info">
+<p class="admonition-title">Stub — content to be added</p>
+<p>Site-specific paths and script names to be documented here.</p>
+</div>
 <h4 id="overview_7">Overview</h4>
 <ul>
 <li>Uses Google API for TGA + manual data</li>
@@ -2020,6 +2074,10 @@
 </ul>
 <hr>
 <h3 id="55-ab2-drivehq-google-api-hybrid">5.5 AB2 – DriveHQ + Google API (Hybrid)</h3>
+<div class="admonition info">
+<p class="admonition-title">Stub — content to be added</p>
+<p>Site-specific DriveHQ retrieval details and script names to be documented here.</p>
+</div>
 <h4 id="overview_8">Overview</h4>
 <ul>
 <li>Tower data: DriveHQ</li>
@@ -2123,6 +2181,8 @@
         <script src="../../javascripts/vendor/mathjax/es5/tex-mml-chtml.js"></script>
       
         <script src="../../javascripts/mermaid-zoom.js"></script>
+      
+        <script src="../../javascripts/video-player.js"></script>
       
     
   
