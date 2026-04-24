@@ -47,8 +47,6 @@ Baldocchi, D.D., Hicks, B.B., & Meyers, T.P. (1988). Measuring biosphere-atmosph
 
 Meyers, T.P., et al. (1996). A comparison of summertime water and CO₂ fluxes over rangeland for well watered and drought conditions. *Agricultural and Forest Meteorology*, 89, 87-105.
 
-Wagner-Riddle, C., et al. (2007). Flux of nitrous oxide from agricultural fields: Measurement and flux-gradient approach. *Journal of Geophysical Research*, 112, D24112.
-
 Zhao, J., et al. (2019). An evaluation of the flux-gradient and the eddy covariance method to measure CH₄, CO₂, and H₂O fluxes from small ponds. *Agricultural and Forest Meteorology*, 275, 255-264.
 
 ### Monin-Obukhov Similarity Theory
@@ -79,11 +77,6 @@ Griffis, T.J., et al. (2003). Ecophysiological controls on the carbon balances o
 
 Foken, T., & Wichura, B. (1996). Tools for quality assessment of surface-based flux measurements. *Agricultural and Forest Meteorology*, 78, 83-105.
 
-### Agricultural Applications
-
-Amiro, B.D., et al. (2006). Carbon, energy and water fluxes at mature and disturbed forest sites, Saskatchewan, Canada. *Agricultural and Forest Meteorology*, 136, 237-251.
-
-Phillips, R.L., et al. (2007). Soil-atmospheric exchange of nitrous oxide in Canadian agricultural soils. *Journal of Geophysical Research*, 112, D03304.
 
 ### Turbulence and Boundary Layer
 
@@ -97,14 +90,14 @@ Stull, R.B. (1988). *An Introduction to Boundary Layer Meteorology*. Kluwer Acad
 
 ### Site-Specific Research
 
-Pow, P. (2024). Carbon dioxide, water vapour, and nitrous oxide fluxes over an intensively managed forage crop in the Lower Fraser Valley in British Columbia, Canada. PhD Thesis, University of British Columbia.
+Pow, P.K.C., 2024. Measurements of evapotranspiration and greenhouse gas exchange over a conventionally managed forage crop (Doctoral dissertation, University of British Columbia).
 
 :material-file-pdf-box: [View Thesis](../ubc_2024_november_pow_patrick.pdf)
 
 **Relevant Chapters:**
 
-- Chapter 2: Climate and flux measurements (methods, pp. 19-35)
-- Chapter 5: FG method evaluation (pp. 117-147)
+- Chapter 2: The carbon balance and water use efficiency ... (Methods, pp. 19-35)
+- Chapter 5: The evaluation of the flux-gradient method  ... (Methods, pp. 117-147)
 
 ---
 
