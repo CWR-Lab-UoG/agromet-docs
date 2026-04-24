@@ -6,7 +6,7 @@ Welcome to the CWR Lab micrometeorological measurement and analysis documentatio
 
 CWR Lab agrometeorology network include long-term benchmark sites and field towers across Canada. These sites span diverse climates and soil types from Ontario’s humid croplands to the prairie provinces’ dry continental systems, and support side-by-side comparisons of fertilizer practices, crop rotations, cover crops, and inhibitors. Each benchmark site combines continuous micrometeorological flux measurements with soil process studies, providing region-specific insights into nitrous oxide dynamics and the effectiveness of best management practices. Together, these sites form the foundation for scaling farm-level results into national strategies for emission reduction.
 
-All network sites employ two complementary micrometeorological measurement techniques for quantifyin greenhouse gas and energy fluxes:
+All network sites employ two complementary micrometeorological measurement techniques for quantifying greenhouse gas and energy fluxes:
 
 1. **Flux-Gradient (FG) Method** - Uses vertical concentration gradients
 2. **Eddy Covariance (EC) Method** - Direct turbulent flux measurements
@@ -62,42 +62,21 @@ All network sites employ two complementary micrometeorological measurement techn
     1. Read the [Site Overview](introduction/overview.md) to understand the measurement setup
     2. Review the [Instrumentation](introduction/instrumentation.md) section
     3. Choose measurement method: [EC](eddy-covariance/fundamentals.md) or [FG](flux-gradient/fundamentals.md)
-    4. Familiarize with [Quality Control](eddy-covariance/quality-control.md) procedures
+    4. Familiarize with the [EC Fundamentals](eddy-covariance/fundamentals.md) and [FG Fundamentals](flux-gradient/fundamentals.md) pages
 
 ## Video Tutorial
 
 Below is an introductory video explaining the site setup (example of video embedding):
 
-<!-- Replace with actual video URL -->
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <video id="tutorialVideo"
-         controls
-         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-  </video>
+<div class="video-playlist video-embed"
+     data-videos='[
+       "videos/tutorials/CWR_FG_Walkthrough_Part_01r720_part_001.mp4",
+       "videos/tutorials/CWR_FG_Walkthrough_Part_01r720_part_002.mp4"
+     ]'>
 </div>
-
-<script>
-  const videoList = [
-    "videos/tutorials/CWR_FG_Walkthrough_Part_01r720_part_001.mp4",
-	"videos/tutorials/CWR_FG_Walkthrough_Part_01r720_part_002.mp4"
-  ];
-
-  let current = 0;
-  const player = document.getElementById("tutorialVideo");
-
-  function playNext() {
-    if (current < videoList.length) {
-      player.src = videoList[current];
-      player.play();
-      current++;
-    }
-  }
-
-  player.addEventListener("ended", playNext);
-
-  // Start the first video
-  playNext();
-</script>
+<div class="video-placeholder">
+  📹 Video: Introduction to flux measurement workflow, Parts 1–8 — available in the online documentation.
+</div>
 
 ## Site Diagram
 

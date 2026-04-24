@@ -84,6 +84,7 @@ extra_javascript:
   - javascripts/mathjax.js
   - javascripts/vendor/mathjax/es5/tex-mml-chtml.js
   - javascripts/mermaid-zoom.js
+  - javascripts/video-player.js
 extra_css:
   - stylesheets/mermaid-svg.css
   - stylesheets/extra.css
@@ -108,6 +109,7 @@ nav:
   - Processing:
       - Overview: processing/overview.md
       - Daily Automation: processing/automation_task_scheduler.md
+      - Data Collection Workflows: processing/data_collection_workflows.md
       - Data Transfer Workflows: processing/data_transfer_workflows.md
       - Eddy Covariance Pipeline: processing/eddy_covariance_pipeline.md
       - Flux-Gradient Pipeline: processing/flux_gradient_pipeline.md

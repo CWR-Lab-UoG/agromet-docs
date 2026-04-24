@@ -18,6 +18,9 @@ This document provides:
 * a comparison table across sites
 * site-specific implementations
 
+For the exact scheduled times at which each transfer step fires on the lab processing
+computer, see **[Daily Automation & Task Scheduler](automation_task_scheduler.md)**.
+
 ---
 
 ## 1. Data Transfer Architecture
@@ -200,6 +203,14 @@ Site → DriveHQ upload → Lab retrieval script → Processing
 | AB1  | External / local + scripts | Google API | Google API       | Hybrid      |
 | AB2  | DriveHQ                    | Google API | Google API       | Hybrid      |
 
+!!! note "\"Manual / Heights\" column"
+    This column refers to periodic manual-measurement files: canopy height records,
+    leaf area index (LAI) measurements, crop management logs, and other non-automated
+    field observations that are uploaded on an irregular schedule (typically after each
+    field visit) alongside the continuous automated data. At most sites these files are
+    uploaded via the Google Drive API regardless of which mechanism handles the
+    high-frequency tower data.
+
 ---
 
 ## 5. Site-Specific Implementations
@@ -250,6 +261,11 @@ ses-lab-data\Transfers\E26\...
 
 ### 5.2 ON3 – Google Drive API Transfer
 
+!!! info "Stub — content to be added"
+    This section follows the same architecture as ON1 but with site-specific
+    paths and configuration. Details to be completed once ON1 documentation
+    is finalised and used as a template.
+
 #### Overview
 
 * Same architecture as ON1
@@ -264,6 +280,10 @@ ses-lab-data\Transfers\E26\...
 ---
 
 ### 5.3 SK1 – Dropbox + Google API (Hybrid)
+
+!!! info "Stub — content to be added"
+    Site-specific paths, Dropbox folder configuration, and script names to be
+    documented here.
 
 #### Overview
 
@@ -285,6 +305,9 @@ ses-lab-data\Transfers\E26\...
 
 ### 5.4 AB1 – Hybrid Transfer
 
+!!! info "Stub — content to be added"
+    Site-specific paths and script names to be documented here.
+
 #### Overview
 
 * Uses Google API for TGA + manual data
@@ -298,6 +321,9 @@ ses-lab-data\Transfers\E26\...
 ---
 
 ### 5.5 AB2 – DriveHQ + Google API (Hybrid)
+
+!!! info "Stub — content to be added"
+    Site-specific DriveHQ retrieval details and script names to be documented here.
 
 #### Overview
 

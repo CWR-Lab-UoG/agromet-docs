@@ -59,6 +59,7 @@ sequenceDiagram
 - Logs are written for traceability and recovery
 
 
+
 !!! note "Data Transfer Details"
 
     For detailed information on how data are transferred from field sites

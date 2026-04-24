@@ -262,11 +262,7 @@ Friction velocity ($u_*$) characterizes turbulent intensity and is crucial for:
 <div class="video-embed">
   <iframe src="https://www.youtube.com/embed/ec-theory-video" frameborder="0" allowfullscreen></iframe>
 </div>
-<div class="video-placeholder">📹 Video: Eddy covariance theory and practice (30 min) — see online documentation — available in the online documentation at the project site.</div>
-
-<div class="video-placeholder">📹 Interactive figure: Typical daily flux patterns — see online documentation — available in the online documentation at the project site.</div>
-
-</div>
+<div class="video-placeholder">📹 Video: Eddy covariance theory and practice (30 min) — available in the online documentation.</div>
 
 *Video: Eddy covariance theory and practice (30 minutes)*
 
@@ -283,6 +279,5 @@ Friction velocity ($u_*$) characterizes turbulent intensity and is crucial for:
 
 ## Next Steps
 
-- [EC Variables](variables.md) - Detailed variable definitions
-- [Data Processing](processing.md) - Step-by-step processing workflow
-- [Quality Control](quality-control.md) - QA/QC procedures
+- [EC Processing Pipeline](../processing/eddy_covariance_pipeline.md) — how EC data move from raw files through EddyPro to archived products
+- [Flux-Gradient Fundamentals](../flux-gradient/fundamentals.md) — the complementary measurement method used at the same sites
